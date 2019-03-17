@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Work @ 90 Seconds</string>
+    <string name="app_name">User Tracking</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>

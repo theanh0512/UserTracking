@@ -37,6 +37,6 @@ fun loadImage(view: ImageView, imageUrl: String) {
 }
 
 @BindingAdapter("app:itemOnClick")
-fun onClick(view: View, userId: String) {
+fun onClick(view: View, userId: Int) {
 
 }

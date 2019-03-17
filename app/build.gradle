@@ -21,8 +21,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "URL_ENDPOINT", "\"https://www.googleapis.com/youtube/v3/\""
-        buildConfigField "String", "YOUTUBE_KEY", "\"AIzaSyBtzsWsB4QSVNQscPJm6F7leXn4Bcb9q1g\""
+        buildConfigField "String", "URL_ENDPOINT", "\"https://jsonplaceholder.typicode.com/\""
     }
     buildTypes {
         release {

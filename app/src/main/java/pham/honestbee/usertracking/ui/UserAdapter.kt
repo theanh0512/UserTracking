@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import pham.honestbee.usertracking.R
-import pham.honestbee.usertracking.databinding.ItemVideoYoutubeBinding
+import pham.honestbee.usertracking.databinding.ItemUserBinding
 import pham.honestbee.usertracking.vo.User
 
 /**
  * Created by Pham on 27/8/2018.
  */
-class UserAdapter constructor(val listener: UserListener): RecyclerView.Adapter<UserAdapter.DataViewHolder>() {
+class UserAdapter constructor(val listener: UserListener) : RecyclerView.Adapter<UserAdapter.DataViewHolder>() {
     private val data: MutableList<User>
 
     init {
@@ -21,7 +21,7 @@ class UserAdapter constructor(val listener: UserListener): RecyclerView.Adapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_video_youtube,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user,
                 FrameLayout(parent.context), false)
         return DataViewHolder(itemView)
     }
@@ -30,7 +30,7 @@ class UserAdapter constructor(val listener: UserListener): RecyclerView.Adapter<
         val dataModel = data[position]
         holder.setViewModel(UserItemViewModel(dataModel))
         holder.binding?.itemView?.setOnClickListener {
-            listener.onUserClick(data[position].snippet?.resource?.videoId)
+            listener.onUserClick(data[position].id)
         }
     }
 
@@ -61,7 +61,7 @@ class UserAdapter constructor(val listener: UserListener): RecyclerView.Adapter<
     }
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: ItemVideoYoutubeBinding? = null
+        var binding: ItemUserBinding? = null
 
         init {
             bind()
@@ -87,7 +87,7 @@ class UserAdapter constructor(val listener: UserListener): RecyclerView.Adapter<
     }
 
     interface UserListener {
-        fun onUserClick(userId: String?)
+        fun onUserClick(userId: Int?)
     }
 
     companion object {

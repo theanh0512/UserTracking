@@ -18,8 +18,8 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
     val users = ObservableArrayList<User>()
     private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry() }
     private val compositeDisposable = CompositeDisposable()
-    private val userAdapter = UserAdapter(object : UserAdapter.UserListener{
-        override fun onUserClick(userId: String?) {
+    private val userAdapter = UserAdapter(object : UserAdapter.UserListener {
+        override fun onUserClick(userId: Int?) {
 //            val intent = Intent(context, YoutubePlayerActivity::class.java)
 //            intent.putExtra(YoutubePlayerActivity.KEY_VIDEO_ID_INTENT, videoId)
 //            context.startActivity(intent)
@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
     })
 
     init {
-        //loadUsers(WORK_PLAYLIST_ID)
+        loadUsers()
     }
 
     // we use these here because the databinding lib is still having a timing bug
@@ -50,13 +50,13 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
         compositeDisposable.clear()
     }
 
-    fun loadUsers(playlistId: String) {
+    fun loadUsers() {
         loading.set(true)
-        compositeDisposable.add(userRepository.getUsers(playlistId)
+        compositeDisposable.add(userRepository.getUsers()
                 .subscribe({ response ->
                     loading.set(false)
                     loadSuccess.set(true)
-                    users.addAll(response.users as ArrayList)
+                    users.addAll(response as ArrayList)
                 }, { throwable ->
                     throwable.printStackTrace()
                     loading.set(false)

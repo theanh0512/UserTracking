@@ -4,9 +4,8 @@ import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import pham.honestbee.usertracking.BuildConfig
 import pham.honestbee.usertracking.api.UserService
-import pham.honestbee.usertracking.vo.Response
+import pham.honestbee.usertracking.vo.User
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,9 +14,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class UserRepository @Inject constructor(val context: Context, val userService: UserService) {
-    fun getUsers(playlistId: String): Observable<Response> {
-        return userService.getUsers(BuildConfig.YOUTUBE_KEY,
-                playlistId, "snippet", 50)
+    fun getUsers(): Observable<List<User>> {
+        return userService.getUsers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
