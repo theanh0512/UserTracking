@@ -10,6 +10,10 @@ import pham.honestbee.usertracking.R
 import pham.honestbee.usertracking.databinding.ActivityMainBinding
 import javax.inject.Inject
 
+/**
+ * Created by Pham on 18/3/2019
+ */
+
 class MainActivity : DaggerAppCompatActivity() {
 
     @Inject

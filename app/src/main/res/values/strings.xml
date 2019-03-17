@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Work @ 90 Seconds</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="password_validation_error">Password cannot be less than 6 characters</string>
+    <string name="email_validation_error">Invalid Email</string>
 </resources>
