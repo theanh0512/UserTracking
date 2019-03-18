@@ -16,13 +16,19 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
     val loading = ObservableBoolean(false)
     val loadSuccess = ObservableBoolean(false)
     val users = ObservableArrayList<User>()
+    val selectedUser = ObservableField<User>()
+    var mapLink = ObservableField<String>(DEFAULT_MAP_LINK)
     private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry() }
     private val compositeDisposable = CompositeDisposable()
     private val userAdapter = UserAdapter(object : UserAdapter.UserListener {
-        override fun onUserClick(userId: Int?) {
-//            val intent = Intent(context, YoutubePlayerActivity::class.java)
-//            intent.putExtra(YoutubePlayerActivity.KEY_VIDEO_ID_INTENT, videoId)
-//            context.startActivity(intent)
+        override fun onUserClick(user: User?) {
+            selectedUser.set(user)
+            val selectedLat = selectedUser.get()?.address?.geo?.lat
+            val selectedLng = selectedUser.get()?.address?.geo?.lng
+            if (selectedUser.get() != null) {
+                mapLink.set("https://maps.googleapis.com/maps/api/staticmap?zoom=4&scale=2&size=800x400&maptype=terrain&markers=color:blue%7Clabel:U%7C$selectedLat%2c%20$selectedLng&style=feature:road.highway%7Celement:geometry%7Cvisibility:simplified%7Ccolor:0xc280e9&style=feature:transit.line%7Cvisibility:simplified%7Ccolor:0xbababa&style=feature:road.highway%7Celement:labels.text.stroke%7Cvisibility:on%7Ccolor:0xb06eba&style=feature:road.highway%7Celement:labels.text.fill%7Cvisibility:on%7Ccolor:0xffffff&key=AIzaSyDIJ9XX2ZvRKCJcFRrl-lRanEtFUow4piM")
+            }
+            Log.d("click", mapLink.get())
         }
     })
 
@@ -66,5 +72,6 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
     }
 
     companion object {
+        const val DEFAULT_MAP_LINK = "https://maps.googleapis.com/maps/api/staticmap?center=Singapore&zoom=11&scale=2&size=800x400&maptype=terrain&key=AIzaSyDIJ9XX2ZvRKCJcFRrl-lRanEtFUow4piM";
     }
 }

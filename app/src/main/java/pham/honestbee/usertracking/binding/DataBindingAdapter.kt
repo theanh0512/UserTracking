@@ -1,6 +1,5 @@
 package pham.honestbee.usertracking.binding
 
-import android.content.Intent
 import android.databinding.BindingAdapter
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -25,7 +24,7 @@ fun setRotation(view: ImageView, loading: Boolean) {
     }
 }
 
-@BindingAdapter("app:thumbnailImage")
+@BindingAdapter("app:imageUrl")
 fun loadImage(view: ImageView, imageUrl: String) {
     val requestOptions = RequestOptions()
     requestOptions.error(R.drawable.no_image).centerCrop()

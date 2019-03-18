@@ -30,7 +30,7 @@ class UserAdapter constructor(val listener: UserListener) : RecyclerView.Adapter
         val dataModel = data[position]
         holder.setViewModel(UserItemViewModel(dataModel))
         holder.binding?.itemView?.setOnClickListener {
-            listener.onUserClick(data[position].id)
+            listener.onUserClick(data[position])
         }
     }
 
@@ -87,7 +87,7 @@ class UserAdapter constructor(val listener: UserListener) : RecyclerView.Adapter
     }
 
     interface UserListener {
-        fun onUserClick(userId: Int?)
+        fun onUserClick(user: User?)
     }
 
     companion object {
