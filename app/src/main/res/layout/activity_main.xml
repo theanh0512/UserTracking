@@ -23,8 +23,6 @@
             android:layout_height="@dimen/rv_height"
             android:layout_marginTop="@dimen/margin_small"
             android:background="@color/color_white"
-            android:nestedScrollingEnabled="true"
-            android:paddingTop="@dimen/margin_small"
             android:paddingBottom="@dimen/margin_medium"
             app:adapter="@{viewModel.adapter}"
             app:data="@{viewModel.users}"

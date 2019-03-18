@@ -5,6 +5,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import pham.honestbee.usertracking.R
 
@@ -28,6 +29,17 @@ fun setRotation(view: ImageView, loading: Boolean) {
 fun loadImage(view: ImageView, imageUrl: String) {
     val requestOptions = RequestOptions()
     requestOptions.error(R.drawable.no_image).centerCrop()
+
+    Glide.with(view.context)
+            .setDefaultRequestOptions(requestOptions)
+            .load(imageUrl)
+            .into(view)
+}
+
+@BindingAdapter("app:avatarUrl")
+fun loadAvatar(view: ImageView, imageUrl: String) {
+    val requestOptions = RequestOptions()
+    requestOptions.error(R.drawable.no_image).centerCrop().transform(RoundedCorners(20))
 
     Glide.with(view.context)
             .setDefaultRequestOptions(requestOptions)

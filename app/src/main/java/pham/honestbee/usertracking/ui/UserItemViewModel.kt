@@ -13,4 +13,14 @@ class UserItemViewModel(val user: User) : BaseObservable() {
     fun getName(): String? {
         return if (!TextUtils.isEmpty(user.name)) user.name else ""
     }
+
+    @Bindable
+    fun getEmail(): String? {
+        return if (!TextUtils.isEmpty(user.email)) user.email else ""
+    }
+
+    @Bindable
+    fun getRandomAvatar(): String? {
+        return "https://robohash.org/${user.id}"
+    }
 }

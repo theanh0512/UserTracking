@@ -16,6 +16,8 @@
     <dimen name="thumbnail_height">180dp</dimen>
     <dimen name="rv_height">350dp</dimen>
 
+    <dimen name="avatar_size">48dp</dimen>
+
     //font
     <dimen name="font_size_title">96sp</dimen>
     <dimen name="font_size_big">20sp</dimen>
