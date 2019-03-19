@@ -1,10 +1,14 @@
 # User Tracking app
 * Architecture: MVVM with databinding
-* Some libraries: Retrofit, Dagger2, RxJava2, Google Architecture Component
+* Some libraries: Retrofit, Dagger2, RxJava2, Google Architecture Components(Room, ViewModel)
+* Application provides example on how we can load data in offline-first style
+** It will first check data from database before calling the network to get new data
+** We can also click refresh to force update data from network
 
 ## Screenshots
 <p align="center">
-  <img src="/screenshots/Screenshot_1.png" width="350" alt="accessibility text">
+  <img src="/screenshots/Screenshot_1.jpg" width="350" alt="accessibility text">
+  <img src="/screenshots/Screenshot_2.jpg" width="350" alt="accessibility text">
 </p>
 
 ## How to Contribute
