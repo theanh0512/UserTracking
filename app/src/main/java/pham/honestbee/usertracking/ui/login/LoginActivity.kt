@@ -37,8 +37,7 @@ class LoginActivity : AppCompatActivity() {
             binding?.password?.error = getString(R.string.password_validation_error)
         }
 
-        //todo remove ! to check
-        if (!isValidEmail(email) && !isValidPassword(pass)) {
+        if (isValidEmail(email) && isValidPassword(pass)) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
