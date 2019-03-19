@@ -5,10 +5,13 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import dagger.android.support.DaggerAppCompatActivity
 import pham.honestbee.usertracking.R
 import pham.honestbee.usertracking.databinding.ActivityMainBinding
 import javax.inject.Inject
+
 
 /**
  * Created by Pham on 18/3/2019
@@ -33,6 +36,23 @@ class MainActivity : DaggerAppCompatActivity() {
     private fun initViewModelAndBind() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
         binding?.viewModel = viewModel
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_activity_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                viewModel.loadUsers(true)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {

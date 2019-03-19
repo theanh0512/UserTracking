@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
     })
 
     init {
-        loadUsers()
+        loadUsers(false)
     }
 
     // we use these here because the databinding lib is still having a timing bug
@@ -59,8 +59,11 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
         compositeDisposable.clear()
     }
 
-    fun loadUsers() {
+    fun loadUsers(forceUpdate: Boolean) {
         loading.set(true)
+        if(forceUpdate) {
+            userRepository.refreshUsers()
+        }
         userRepository.getUsers(object : UsersDataSource.LoadUsersCallback {
             override fun onUsersLoaded(users: List<User>) {
                 val usersToShow = ArrayList<User>()

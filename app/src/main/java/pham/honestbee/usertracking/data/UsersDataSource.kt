@@ -13,6 +13,8 @@ interface UsersDataSource {
 
     fun deleteAllUsers()
 
+    fun refreshUsers()
+
     interface LoadUsersCallback {
 
         fun onUsersLoaded(users: List<User>)

@@ -19,7 +19,6 @@ class UserRepository
 @Inject constructor(val context: Context,
                     @Remote val userRemoteDataSource: UsersDataSource,
                     @Local val userLocalDataSource: UsersDataSource) : UsersDataSource {
-
     /**
      * This variable has package local visibility so it can be accessed from tests.
      */
@@ -107,12 +106,9 @@ class UserRepository
         cachedUsers!!.clear()
     }
 
-//    fun getUsers(): Observable<List<User>> {
-//        return userService.getUsers()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//    }
-
+    override fun refreshUsers() {
+        cacheIsDirty = true
+    }
 
     companion object {
         private val TAG = "User"
