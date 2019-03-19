@@ -2,8 +2,10 @@
 * Architecture: MVVM with databinding
 * Some libraries: Retrofit, Dagger2, RxJava2, Google Architecture Components(Room, ViewModel)
 * Application provides example on how we can load data in offline-first style
-** It will first check data from database before calling the network to get new data
-** We can also click refresh to force update data from network
+    * It will first check data from database
+        * If data available in database, we display it
+        * If not, it will call the network to get new data, display it and save to database
+    * We can also click refresh to force update data from network
 
 ## Screenshots
 <p align="center">
