@@ -1,7 +1,6 @@
 package pham.honestbee.usertracking.api
 
 import io.reactivex.Observable
-import pham.honestbee.usertracking.vo.Response
 import pham.honestbee.usertracking.vo.User
 import retrofit2.http.GET
 

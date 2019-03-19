@@ -41,4 +41,5 @@ ext {
     lifecycleVersion = "1.1.1"
     rxlocationVersion = "1.0.5"
     playLocationVersion = "15.0.1"
+    room_version = "1.1.1"
 }

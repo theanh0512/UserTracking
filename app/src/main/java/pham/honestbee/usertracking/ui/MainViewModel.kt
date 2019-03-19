@@ -3,10 +3,13 @@ package pham.honestbee.usertracking.ui
 import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.databinding.*
+import android.databinding.Observable
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
-import pham.honestbee.usertracking.repository.UserRepository
+import pham.honestbee.usertracking.data.UsersDataSource
+import pham.honestbee.usertracking.data.source.repository.UserRepository
 import pham.honestbee.usertracking.vo.User
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -15,7 +18,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(val context: Context, val userRepository: UserRepository) : ViewModel(), Observable {
     val loading = ObservableBoolean(false)
     val loadSuccess = ObservableBoolean(false)
-    val users = ObservableArrayList<User>()
+    val displayUsers = ObservableArrayList<User>()
     val selectedUser = ObservableField<User>()
     var mapLink = ObservableField<String>(DEFAULT_MAP_LINK)
     private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry() }
@@ -58,17 +61,23 @@ class MainViewModel @Inject constructor(val context: Context, val userRepository
 
     fun loadUsers() {
         loading.set(true)
-        compositeDisposable.add(userRepository.getUsers()
-                .subscribe({ response ->
-                    loading.set(false)
-                    loadSuccess.set(true)
-                    users.addAll(response as ArrayList)
-                }, { throwable ->
-                    throwable.printStackTrace()
-                    loading.set(false)
-                    loadSuccess.set(false)
-                })
-                { Log.d("Users", "Completed") })
+        userRepository.getUsers(object : UsersDataSource.LoadUsersCallback {
+            override fun onUsersLoaded(users: List<User>) {
+                val usersToShow = ArrayList<User>()
+                for (user in users) {
+                    usersToShow.add(user)
+                }
+                loading.set(false)
+                loadSuccess.set(true)
+                displayUsers.clear()
+                displayUsers.addAll(usersToShow)
+            }
+
+            override fun onDataNotAvailable() {
+                loading.set(false)
+                loadSuccess.set(false)
+            }
+        })
     }
 
     companion object {

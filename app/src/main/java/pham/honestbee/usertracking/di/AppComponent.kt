@@ -6,7 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import pham.honestbee.usertracking.UserTrackingApplication
-import pham.honestbee.usertracking.repository.UserRepository
+import pham.honestbee.usertracking.data.source.repository.UserRepository
 import javax.inject.Singleton
 
 /**
@@ -19,7 +19,12 @@ import javax.inject.Singleton
  *and location of sub-components.
  * */
 @Singleton
-@Component(modules = [ApplicationModule::class, NetworkModule::class, ActivityBindingModule::class, AndroidSupportInjectionModule::class])
+@Component(modules = [ApplicationModule::class,
+    NetworkModule::class,
+    DbModule::class,
+    UsersRepositoryModule::class,
+    ActivityBindingModule::class,
+    AndroidSupportInjectionModule::class])
 interface AppComponent : AndroidInjector<UserTrackingApplication> {
 
     val userRepository: UserRepository
