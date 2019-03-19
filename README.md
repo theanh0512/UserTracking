@@ -7,7 +7,7 @@
 
 ## Screenshots
 <p align="center">
-  <img src="/screenshots/Screenshot_1.jpg" width="350" alt="accessibility text">
+  <img src="/screenshots/screenshot_1.jpg" width="350" alt="accessibility text">
   <img src="/screenshots/Screenshot_2.jpg" width="350" alt="accessibility text">
 </p>
 
